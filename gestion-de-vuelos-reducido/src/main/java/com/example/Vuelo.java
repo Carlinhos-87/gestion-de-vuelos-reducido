@@ -3,6 +3,7 @@ package com.example;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -30,5 +31,6 @@ public class Vuelo {
 	private LocalTime horaLlegada;
 	private int numeroPlazas;
 	
-	private List<Pasajero> pasajeros;
+	@Builder.Default
+	private List<Pasajero> pasajeros = new ArrayList<>();
 }
