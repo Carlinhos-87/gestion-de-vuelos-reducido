@@ -33,4 +33,6 @@ public class Vuelo {
 	
 	@Builder.Default
 	private List<Pasajero> pasajeros = new ArrayList<>();
+	
+	//madrid-paris(2,00), madrid-chile(13,20), madrid-newyork(8,25);
 }

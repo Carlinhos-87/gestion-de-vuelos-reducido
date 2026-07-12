@@ -110,7 +110,8 @@ public class App {
 		// Pto 1.
 
 		List<Vuelo> vuelosCompleto = vuelos.stream()
-				.filter(vuelo -> vuelo.getPasajeros().size() == vuelo.getNumeroPlazas()).collect(Collectors.toList());
+				.filter(vuelo -> vuelo.getPasajeros().size() == 
+					vuelo.getNumeroPlazas()).collect(Collectors.toList());
 
 		// Modernamente, año 2026. No hace falta el metodo collect al final de la
 		// tuberia
@@ -124,7 +125,8 @@ public class App {
 
 		// Pto 2
 
-		List<Vuelo> vuelosHoy = vuelos.stream().filter(vuelo -> vuelo.getFechaSalida().isEqual(LocalDate.now()))
+		List<Vuelo> vuelosHoy = vuelos.stream()
+				.filter(vuelo -> vuelo.getFechaSalida().isEqual(LocalDate.now()))
 				.toList();
 
 		System.out.println("Vuelos con salida para el dia de hoy: ");
@@ -160,7 +162,8 @@ public class App {
 		// Pto 6
 
 		List<Vuelo> vuelosUltimos10DiasDelMes = vuelos.stream().filter(vuelo -> vuelo.getFechaSalida()
-				.with(TemporalAdjusters.lastDayOfMonth()).minusDays(10).isBefore(vuelo.getFechaSalida())).toList();
+				.with(TemporalAdjusters.lastDayOfMonth()).minusDays(10)
+				.isBefore(vuelo.getFechaSalida())).toList();
 
 		System.out.println("Vuelos que salen en los ultimos 10 dias del mes: ");
 		System.out.println(vuelosUltimos10DiasDelMes);
@@ -169,8 +172,10 @@ public class App {
 		// fecha de salida se corresponda con el mes actual
 
 		List<Vuelo> vuelosUltimos10DiasDelMes2 = vuelos.stream()
-				.filter(vuelo -> vuelo.getFechaSalida().with(TemporalAdjusters.lastDayOfMonth()).minusDays(10).isBefore(
-						vuelo.getFechaSalida()) && vuelo.getFechaSalida().getMonth().equals(LocalDate.now().getMonth()))
+				.filter(vuelo -> vuelo.getFechaSalida().with(TemporalAdjusters.lastDayOfMonth())
+						.minusDays(10).isBefore(
+						vuelo.getFechaSalida()) && vuelo.getFechaSalida().getMonth()
+						.equals(LocalDate.now().getMonth()))
 				.toList();
 
 		// Pto 7
@@ -179,7 +184,8 @@ public class App {
 
 		pasajerosPorGeneroYEdad = vuelos.stream().flatMap(vuelo -> vuelo.getPasajeros().stream())
 				.collect(Collectors.groupingBy(Pasajero::genero, Collectors.groupingBy(
-						pasajero -> ChronoUnit.YEARS.between(pasajero.fechaNacimiento(), LocalDate.now()))));
+						pasajero -> ChronoUnit.YEARS.between(pasajero.fechaNacimiento(),
+								LocalDate.now()))));
 
 		// Ejercicio al margen del Pto 7. En lugar de tener una lista de pasajeros,
 		// quiero
